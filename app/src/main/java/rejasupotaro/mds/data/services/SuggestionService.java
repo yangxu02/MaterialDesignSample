@@ -13,6 +13,6 @@ public class SuggestionService {
             return Observable.just(new ArrayList<>());
         }
 
-        return Observable.just(Pokemons.allPokemonNames());
+        return Observable.just(Pokemons.allPokemonNames(query));
     }
 }

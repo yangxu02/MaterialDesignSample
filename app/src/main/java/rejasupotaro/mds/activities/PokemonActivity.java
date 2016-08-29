@@ -24,7 +24,7 @@ public class PokemonActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.recipe_detail)
+    @Bind(R.id.pokemon_detail)
     PokemonDetailView pokemonDetailView;
 
     private Pokemon pokemon;

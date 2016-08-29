@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.etsy.android.grid.StaggeredGridView;
@@ -112,6 +113,7 @@ public class MainActivity extends BaseActivity {
         LayoutInflater layoutInflater = getLayoutInflater();
 
         View header = layoutInflater.inflate(R.layout.list_header_channel_pokemon, null);
+
         pokemonListView.addHeaderView(header);
 
         pokemonListAdapter = new PokemonListAdapter(this, channels.get(0).pokemons());

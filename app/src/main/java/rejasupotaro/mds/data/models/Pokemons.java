@@ -45,7 +45,7 @@ public class Pokemons {
     }
 
 
-    public synchronized static List<String> allPokemonNames() {
+    public synchronized static List<String> allPokemonNames(String query) {
         if (null == pokemonRefs || null == pokemonRefs.get()) {
             load();
         }
@@ -55,7 +55,9 @@ public class Pokemons {
         List<Pokemon> pokemonList = pokemonRefs.get();
         List<String> nameList = new ArrayList<>(pokemonList.size());
         for (Pokemon pokemon : pokemonList) {
-            nameList.add(pokemon.name());
+            if (pokemon.name().contains(query)) {
+                nameList.add(pokemon.name());
+            }
         }
         return nameList;
     }
