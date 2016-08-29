@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <com.etsy.android.grid.StaggeredGridView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/channel_recipe_list"
+            android:id="@+id/channel_pokemon_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:column_count="2"

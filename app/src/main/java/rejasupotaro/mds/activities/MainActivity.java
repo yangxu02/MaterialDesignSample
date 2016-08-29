@@ -9,18 +9,15 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.etsy.android.grid.StaggeredGridView;
-
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.etsy.android.grid.StaggeredGridView;
+import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.Channel;
 import rejasupotaro.mds.data.services.ChannelService;
 import rejasupotaro.mds.data.services.SuggestionService;
-import rejasupotaro.mds.view.adapters.RecipeListAdapter;
+import rejasupotaro.mds.view.adapters.PokemonListAdapter;
 import rejasupotaro.mds.view.components.DrawerHeaderView;
 import rejasupotaro.mds.view.components.SearchView;
 import rx.Subscription;
@@ -37,10 +34,10 @@ public class MainActivity extends BaseActivity {
     SearchView searchView;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.channel_recipe_list)
-    StaggeredGridView recipeListView;
+    @Bind(R.id.channel_pokemon_list)
+    StaggeredGridView pokemonListView;
 
-    private RecipeListAdapter recipeListAdapter;
+    private PokemonListAdapter pokemonListAdapter;
     private Subscription channelsSubscription = Subscriptions.empty();
     private Subscription querySubscription = Subscriptions.empty();
     private Subscription suggestionsSubscription = Subscriptions.empty();
@@ -115,9 +112,9 @@ public class MainActivity extends BaseActivity {
         LayoutInflater layoutInflater = getLayoutInflater();
 
         View header = layoutInflater.inflate(R.layout.list_header_channel_recipe, null);
-        recipeListView.addHeaderView(header);
+        pokemonListView.addHeaderView(header);
 
-        recipeListAdapter = new RecipeListAdapter(this, channels.get(0).recipes());
-        recipeListView.setAdapter(recipeListAdapter);
+        pokemonListAdapter = new PokemonListAdapter(this, channels.get(0).pokemons());
+        pokemonListView.setAdapter(pokemonListAdapter);
     }
 }
