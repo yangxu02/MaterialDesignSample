@@ -13,22 +13,22 @@
     <ImageView
         android:id="@+id/pokemon_image"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:scaleType="centerCrop"
+        android:layout_height="96dp"
+        android:scaleType="centerInside"
         android:src="@drawable/recipe"/>
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pokemon_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="@dimen/spacing_medium"
-        android:layout_marginTop="156dp"
-        android:scaleType="centerCrop"
-        app:riv_border_color="@android:color/white"
-        app:riv_border_width="2dp"
-        app:riv_oval="true"/>
+    <!--<com.makeramen.roundedimageview.RoundedImageView-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:id="@+id/pokemon_icon"-->
+    <!--android:layout_width="48dp"-->
+    <!--android:layout_height="48dp"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="@dimen/spacing_medium"-->
+    <!--android:layout_marginTop="156dp"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--app:riv_border_color="@android:color/holo_blue_dark"-->
+    <!--app:riv_border_width="2dp"-->
+    <!--app:riv_oval="true"/>-->
 
     <TextView
         android:id="@+id/pokemon_name_text"
@@ -37,7 +37,7 @@
         android:layout_below="@id/pokemon_image"
         android:layout_marginStart="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_small"
-        android:layout_toEndOf="@id/pokemon_icon"
+        android:gravity="center_horizontal"
         android:ellipsize="end"
         android:singleLine="true"
         android:textSize="@dimen/text_size_xsmall"/>

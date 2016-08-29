@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity {
     private void setupViews(List<Channel> channels) {
         LayoutInflater layoutInflater = getLayoutInflater();
 
-        View header = layoutInflater.inflate(R.layout.list_header_channel_recipe, null);
+        View header = layoutInflater.inflate(R.layout.list_header_channel_pokemon, null);
         pokemonListView.addHeaderView(header);
 
         pokemonListAdapter = new PokemonListAdapter(this, channels.get(0).pokemons());

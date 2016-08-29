@@ -24,8 +24,6 @@ public class PokemonListAdapter extends BindableAdapter<Pokemon> {
     static class ViewHolder {
         @Bind(R.id.pokemon_image)
         ImageView pokemonImageView;
-        @Bind(R.id.pokemon_icon)
-        ImageView pokemonIconView;
         @Bind(R.id.pokemon_name_text)
         TextView pokemonNameTextView;
 
@@ -49,10 +47,6 @@ public class PokemonListAdapter extends BindableAdapter<Pokemon> {
         Picasso.with(view.getContext())
             .load(MaterialSource.PokemonWrapper.imageUrl(pokemon))
             .into(holder.pokemonImageView);
-
-        Picasso.with(view.getContext())
-            .load(MaterialSource.PokemonWrapper.iconUrl(pokemon))
-            .into(holder.pokemonIconView);
 
         holder.pokemonNameTextView.setText(pokemon.name());
 

@@ -21,6 +21,6 @@ public abstract class Channel extends Model {
     }
 
     public static Channel items() {
-        return new AutoValue_Channel("Channel", Pokemons.load());
+        return new AutoValue_Channel("Channel", Pokemons.allPokemons());
     }
 }
