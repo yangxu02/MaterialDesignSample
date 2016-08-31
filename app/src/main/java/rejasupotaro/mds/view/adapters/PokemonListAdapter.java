@@ -14,11 +14,11 @@ import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.activities.PokemonActivity;
 import rejasupotaro.mds.data.models.MaterialSource;
-import rejasupotaro.mds.data.models.Pokemon;
+import rejasupotaro.mds.data.models.PokemonSnippet;
 
-public class PokemonListAdapter extends BindableAdapter<Pokemon> {
-    public PokemonListAdapter(Context context, List<Pokemon> pokemons) {
-        super(context, pokemons);
+public class PokemonListAdapter extends BindableAdapter<PokemonSnippet> {
+    public PokemonListAdapter(Context context, List<PokemonSnippet> pokemonSnippets) {
+        super(context, pokemonSnippets);
     }
 
     static class ViewHolder {
@@ -41,18 +41,18 @@ public class PokemonListAdapter extends BindableAdapter<Pokemon> {
     }
 
     @Override
-    public void bindView(Pokemon pokemon, int position, View view) {
+    public void bindView(PokemonSnippet pokemonSnippet, int position, View view) {
         final ViewHolder holder = (ViewHolder) view.getTag();
 
         Picasso.with(view.getContext())
-            .load(MaterialSource.PokemonWrapper.imageUrl(pokemon))
+            .load(MaterialSource.PokemonWrapper.imageUrl(pokemonSnippet))
             .into(holder.pokemonImageView);
 
-        holder.pokemonNameTextView.setText(pokemon.name());
+        holder.pokemonNameTextView.setText(pokemonSnippet.name());
 
         view.setOnClickListener(v -> {
             Activity activity = (Activity) v.getContext();
-            PokemonActivity.launch(activity, pokemon, holder.pokemonImageView, "");
+            PokemonActivity.launch(activity, pokemonSnippet, holder.pokemonImageView, "");
         });
     }
 }

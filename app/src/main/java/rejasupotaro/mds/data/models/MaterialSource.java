@@ -12,12 +12,12 @@ public class MaterialSource {
         private final static String iconRepo
             = "https://img.pokemondb.net/sprites/black-white/normal/";
 
-        public static String imageUrl(Pokemon pokemon) {
-            return imgRepo + pokemon.name().toLowerCase() + ".jpg";
+        public static String imageUrl(PokemonSnippet pokemonSnippet) {
+            return imgRepo + pokemonSnippet.name().toLowerCase() + ".jpg";
         }
 
-        public static String iconUrl(Pokemon pokemon) {
-            return iconRepo + pokemon.name().toLowerCase() + ".png";
+        public static String iconUrl(PokemonSnippet pokemonSnippet) {
+            return iconRepo + pokemonSnippet.name().toLowerCase() + ".png";
         }
     }
 

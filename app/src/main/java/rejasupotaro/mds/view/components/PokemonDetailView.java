@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Collections;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.MaterialSource;
-import rejasupotaro.mds.data.models.Pokemon;
+import rejasupotaro.mds.data.models.PokemonSnippet;
 
 public class PokemonDetailView extends FrameLayout {
 
@@ -72,15 +72,15 @@ public class PokemonDetailView extends FrameLayout {
         ButterKnife.bind(this);
     }
 
-    public void setPokemon(Pokemon pokemon) {
-        String imageUrl = MaterialSource.PokemonWrapper.imageUrl(pokemon);
+    public void setPokemon(PokemonSnippet pokemonSnippet) {
+        String imageUrl = MaterialSource.PokemonWrapper.imageUrl(pokemonSnippet);
         if (!TextUtils.isEmpty(imageUrl)) {
             Picasso.with(getContext())
                 .load(imageUrl)
                 .into(pokemonImageView, callback);
         }
 
-        titleTextView.setText(pokemon.name());
+        titleTextView.setText(pokemonSnippet.name());
         updatedAtTextView.setText("updateAt");
         descriptionTextView.setText("description");
         stepListView.setSteps(Collections.EMPTY_LIST);

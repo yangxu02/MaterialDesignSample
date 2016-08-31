@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @AutoValue
-public abstract class Pokemon extends Model {
+public abstract class PokemonSnippet extends Model {
     /*
     ['#', 'Name', 'Type', 'Stamina', 'Attack', 'Defense', 'Capture Rate', 'Flee Rate', 'Candy', 'Quick Moves', 'Special Moves'] = [['151'], ['Mew'], ['Psychic'], ['200'], ['220'], ['220'], ['-'], ['10%'], ['-'], ['Pound'], ['Dragon Pulse', 'Earthquake', 'Fire Blast', 'Hurricane', 'Hyper Beam', 'Moonblast', 'Psychic', 'Solar Beam', 'Thunder']]
      */
@@ -48,17 +48,17 @@ public abstract class Pokemon extends Model {
     public abstract List<String> specialMoves();
 
     @JsonCreator
-    public static Pokemon create(@JsonProperty("id") int id,
-                                 @JsonProperty("name") String name,
-                                 @JsonProperty("type") List<String> type,
-                                 @JsonProperty("stamina") int stamina,
-                                 @JsonProperty("attack") int attack,
-                                 @JsonProperty("defense") int defense,
-                                 @JsonProperty("capture_rate") float captureRate,
-                                 @JsonProperty("flee_rate") float fleeRate,
-                                 @JsonProperty("candy") int candy,
-                                 @JsonProperty("quick_moves") List<String> quickMoves,
-                                 @JsonProperty("special_moves") List<String> specialMoves
+    public static PokemonSnippet create(@JsonProperty("id") int id,
+                                        @JsonProperty("name") String name,
+                                        @JsonProperty("type") List<String> type,
+                                        @JsonProperty("stamina") int stamina,
+                                        @JsonProperty("attack") int attack,
+                                        @JsonProperty("defense") int defense,
+                                        @JsonProperty("capture_rate") float captureRate,
+                                        @JsonProperty("flee_rate") float fleeRate,
+                                        @JsonProperty("candy") int candy,
+                                        @JsonProperty("quick_moves") List<String> quickMoves,
+                                        @JsonProperty("special_moves") List<String> specialMoves
     ) {
         return new AutoValue_Pokemon(id, name, type, stamina, attack, defense,
             captureRate, fleeRate, candy, quickMoves, specialMoves);

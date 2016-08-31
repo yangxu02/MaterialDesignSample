@@ -14,12 +14,12 @@ import android.widget.ImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rejasupotaro.mds.R;
-import rejasupotaro.mds.data.models.Pokemon;
+import rejasupotaro.mds.data.models.PokemonSnippet;
 import rejasupotaro.mds.utils.DisplayUtils;
 import rejasupotaro.mds.view.components.PokemonDetailView;
 
 public class PokemonActivity extends BaseActivity {
-    public static final String EXTRA_POKEMON = "pokemon";
+    public static final String EXTRA_POKEMON = "pokemonSnippet";
     public static final String EXTRA_IMAGE = "ItemDetailActivity:image";
 
     @Bind(R.id.toolbar)
@@ -27,16 +27,16 @@ public class PokemonActivity extends BaseActivity {
     @Bind(R.id.pokemon_detail)
     PokemonDetailView pokemonDetailView;
 
-    private Pokemon pokemon;
+    private PokemonSnippet pokemonSnippet;
 
-    public static void launch(Activity activity, Pokemon pokemon, ImageView transitionView, String url) {
+    public static void launch(Activity activity, PokemonSnippet pokemonSnippet, ImageView transitionView, String url) {
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
             activity,
             transitionView,
             EXTRA_IMAGE);
 
         Intent intent = new Intent(activity, PokemonActivity.class);
-        intent.putExtra(EXTRA_POKEMON, pokemon.toJson());
+        intent.putExtra(EXTRA_POKEMON, pokemonSnippet.toJson());
         intent.putExtra(EXTRA_IMAGE, url);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
@@ -50,7 +50,7 @@ public class PokemonActivity extends BaseActivity {
         ImageView pokemonImageView = (ImageView) pokemonDetailView.findViewById(R.id.pokemon_image);
         ViewCompat.setTransitionName(pokemonImageView, EXTRA_IMAGE);
 
-        pokemon = Pokemon.fromJson(getIntent().getStringExtra(EXTRA_POKEMON), Pokemon.class);
+        pokemonSnippet = PokemonSnippet.fromJson(getIntent().getStringExtra(EXTRA_POKEMON), PokemonSnippet.class);
 
         setupActionBar();
         setupViews();
@@ -88,6 +88,6 @@ public class PokemonActivity extends BaseActivity {
     }
 
     private void setupViews() {
-        pokemonDetailView.setPokemon(pokemon);
+        pokemonDetailView.setPokemon(pokemonSnippet);
     }
 }

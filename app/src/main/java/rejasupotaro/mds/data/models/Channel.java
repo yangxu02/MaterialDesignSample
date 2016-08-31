@@ -11,12 +11,12 @@ public abstract class Channel extends Model {
     public abstract String name();
 
     @JsonProperty("recipes")
-    public abstract List<Pokemon> pokemons();
+    public abstract List<PokemonSnippet> pokemons();
 
     @JsonCreator
     public static Channel create(@JsonProperty("name") String name,
-                                 @JsonProperty("pokemons") List<Pokemon> pokemons) {
-        return new AutoValue_Channel(name, pokemons);
+                                 @JsonProperty("pokemonSnippets") List<PokemonSnippet> pokemonSnippets) {
+        return new AutoValue_Channel(name, pokemonSnippets);
 
     }
 
