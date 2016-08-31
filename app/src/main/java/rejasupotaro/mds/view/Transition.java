@@ -2,7 +2,6 @@ package rejasupotaro.mds.view;
 
 import android.app.Activity;
 import android.content.Intent;
-
 import rejasupotaro.mds.R;
 
 public enum Transition {

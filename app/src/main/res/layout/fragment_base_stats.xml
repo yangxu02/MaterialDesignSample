@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <rejasupotaro.mds.view.components.StatView
+      android:id="@+id/hp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+  />
+
+  <rejasupotaro.mds.view.components.StatView
+      android:id="@+id/attack"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+  />
+
+  <rejasupotaro.mds.view.components.StatView
+      android:id="@+id/defense"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+  />
+
+  <rejasupotaro.mds.view.components.StatView
+      android:id="@+id/sp_attack"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+  />
+
+  <rejasupotaro.mds.view.components.StatView
+      android:id="@+id/sp_defense"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+  />
+
+  <rejasupotaro.mds.view.components.StatView
+      android:id="@+id/speed"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+  />
+
+</LinearLayout>

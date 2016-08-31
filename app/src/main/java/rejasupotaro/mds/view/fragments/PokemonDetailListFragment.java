@@ -9,26 +9,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import java.util.Collections;
 import rejasupotaro.mds.R;
-import rejasupotaro.mds.data.models.Recipe;
-import rejasupotaro.mds.view.adapters.UserRecipeListAdapter;
+import rejasupotaro.mds.view.adapters.PokemonDetailListAdapter;
 import rejasupotaro.mds.view.components.DividerItemDecoration;
 
-public class UserRecipeListFragment extends Fragment {
+public class PokemonDetailListFragment extends Fragment {
 
     @Bind(R.id.scroll)
-    RecyclerView userRecipeListView;
+    RecyclerView pokemonDetailListView;
 
-    private UserRecipeListAdapter userRecipeListAdapter;
+    private PokemonDetailListAdapter pokemonDetailListAdapter;
 
     public static Fragment newInstance() {
-        UserRecipeListFragment fragment = new UserRecipeListFragment();
+        PokemonDetailListFragment fragment = new PokemonDetailListFragment();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_recipe_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_pokemon_detail_list, container, false);
         ButterKnife.bind(this, view);
         setupViews();
         return view;
@@ -41,10 +41,10 @@ public class UserRecipeListFragment extends Fragment {
     }
 
     private void setupViews() {
-        userRecipeListView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        userRecipeListView.setHasFixedSize(false);
-        userRecipeListAdapter = new UserRecipeListAdapter(Recipe.dummies());
-        userRecipeListView.addItemDecoration(new DividerItemDecoration(getActivity()));
-        userRecipeListView.setAdapter(userRecipeListAdapter);
+        pokemonDetailListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        pokemonDetailListView.setHasFixedSize(false);
+        pokemonDetailListAdapter = new PokemonDetailListAdapter(Collections.EMPTY_LIST);
+        pokemonDetailListView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        pokemonDetailListView.setAdapter(pokemonDetailListAdapter);
     }
 }

@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-      <rejasupotaro.mds.view.components.UserProfileHeaderView
-          android:id="@+id/user_profile_header"
+      <rejasupotaro.mds.view.components.PokemonProfileHeaderView
+          android:id="@+id/pokemon_profile_header"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"/>
 

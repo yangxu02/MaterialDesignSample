@@ -26,6 +26,10 @@ public abstract class BaseStats extends Model {
         return new AutoValue_BaseStats(normal, min, max);
     }
 
+    public static BaseStats dummy() {
+        return new AutoValue_BaseStats(StatsDetail.dummy(), StatsDetail.dummy(), StatsDetail.dummy());
+    }
+
 
     @AutoValue
     public static abstract class StatsDetail extends Model {
@@ -55,6 +59,10 @@ public abstract class BaseStats extends Model {
                                          @JsonProperty("spDefense") int spDefense,
                                          @JsonProperty("speed") int speed) {
             return new AutoValue_BaseStats_StatsDetail(hp, attack, defense, spAttack, spDefense, speed);
+        }
+
+        public static StatsDetail dummy() {
+            return new AutoValue_BaseStats_StatsDetail(70, 110, 70, 115, 70, 90);
         }
 
 

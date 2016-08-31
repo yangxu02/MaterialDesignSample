@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.etsy.android.grid.StaggeredGridView;

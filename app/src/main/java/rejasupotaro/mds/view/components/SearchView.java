@@ -8,13 +8,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.view.adapters.SuggestionListAdapter;
 import rejasupotaro.mds.view.adapters.TextWatcherAdapter;

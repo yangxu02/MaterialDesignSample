@@ -7,13 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.squareup.picasso.Picasso;
+import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.activities.RecipeActivity;
 import rejasupotaro.mds.data.models.Recipe;

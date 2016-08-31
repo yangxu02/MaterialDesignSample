@@ -3,7 +3,6 @@ package rejasupotaro.mds.view.components;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-
 import rejasupotaro.mds.R;
 
 public class DrawerHeaderView extends FrameLayout {

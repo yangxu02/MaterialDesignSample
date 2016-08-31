@@ -12,9 +12,11 @@ import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 import rejasupotaro.mds.R;
-import rejasupotaro.mds.activities.PokemonActivity;
+import rejasupotaro.mds.activities.PokemonProfileActivity;
 import rejasupotaro.mds.data.models.MaterialSource;
+import rejasupotaro.mds.data.models.PokemonDetail;
 import rejasupotaro.mds.data.models.PokemonSnippet;
+import rejasupotaro.mds.view.Transition;
 
 public class PokemonListAdapter extends BindableAdapter<PokemonSnippet> {
     public PokemonListAdapter(Context context, List<PokemonSnippet> pokemonSnippets) {
@@ -52,7 +54,7 @@ public class PokemonListAdapter extends BindableAdapter<PokemonSnippet> {
 
         view.setOnClickListener(v -> {
             Activity activity = (Activity) v.getContext();
-            PokemonActivity.launch(activity, pokemonSnippet, holder.pokemonImageView, "");
+            PokemonProfileActivity.launch(activity, PokemonDetail.dummy(pokemonSnippet), Transition.PUSH_RIGHT_TO_LEFT);
         });
     }
 }

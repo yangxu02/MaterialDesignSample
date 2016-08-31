@@ -1,9 +1,7 @@
 package rejasupotaro.mds.data.models;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import java.io.IOException;
-
 import rejasupotaro.mds.data.SerializerProvider;
 
 public class Model {

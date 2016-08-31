@@ -21,5 +21,9 @@ public abstract class Evolution extends Model {
         return new AutoValue_Evolution(upstreams, downstreams);
     }
 
+    public static Evolution dummy() {
+        return new AutoValue_Evolution(null, null);
+    }
+
 
 }

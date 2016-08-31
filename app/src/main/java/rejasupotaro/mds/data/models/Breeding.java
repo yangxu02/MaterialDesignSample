@@ -3,6 +3,7 @@ package rejasupotaro.mds.data.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
+import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
@@ -23,17 +24,21 @@ public abstract class Breeding extends Model {
     public abstract int eggCycles();
 
     @JsonProperty("eggCyclesComment")
-    public abstract int eggCyclesComment();
+    public abstract String eggCyclesComment();
 
     @JsonCreator
     public static Breeding create(@JsonProperty("eggGroups") List<String> eggGroups,
                                   @JsonProperty("chanceMale") float chanceMale,
                                   @JsonProperty("chanceFemale") float chanceFemale,
                                   @JsonProperty("eggCycles") int eggCycles,
-                                  @JsonProperty("eggCyclesComment") int eggCyclesComment) {
+                                  @JsonProperty("eggCyclesComment") String eggCyclesComment) {
         return new AutoValue_Breeding(eggGroups, chanceMale, chanceFemale, eggCycles, eggCyclesComment);
     }
 
+    public static Breeding dummy() {
+        return new AutoValue_Breeding(Lists.newArrayList("Field", "Human-Like"),
+            0.875f, 0.125f, 26, "minimum 6630 steps");
+    }
 
 
 }

@@ -4,11 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.Step;
 

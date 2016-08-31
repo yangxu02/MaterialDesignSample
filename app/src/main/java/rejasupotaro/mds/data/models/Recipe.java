@@ -3,7 +3,6 @@ package rejasupotaro.mds.data.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;

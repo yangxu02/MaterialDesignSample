@@ -12,30 +12,37 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.Model;
-import rejasupotaro.mds.data.models.User;
+import rejasupotaro.mds.data.models.PokemonDetail;
+import rejasupotaro.mds.data.models.PokemonSnippet;
 import rejasupotaro.mds.view.Transition;
-import rejasupotaro.mds.view.components.UserProfileHeaderView;
-import rejasupotaro.mds.view.fragments.UserRecipeListFragment;
+import rejasupotaro.mds.view.components.PokemonProfileHeaderView;
+import rejasupotaro.mds.view.fragments.BaseStatsFragment;
+import rejasupotaro.mds.view.fragments.Fragments;
+import rejasupotaro.mds.view.fragments.PokemonDetailListFragment;
 
-public class UserProfileActivity extends BaseActivity {
-    private static final String EXTRA_USER = "user";
+public class PokemonProfileActivity extends BaseActivity {
+    public static final String EXTRA_POKEMON = "pokemonSnippet";
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.user_profile_header)
-    UserProfileHeaderView userProfileHeaderView;
+    @Bind(R.id.pokemon_profile_header)
+    PokemonProfileHeaderView pokemonProfileHeaderView;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
     @Bind(R.id.pager_tabs)
     TabLayout tabLayout;
 
-    public static void launch(Activity activity, User user, Transition transition) {
-        Intent intent = new Intent(activity, UserProfileActivity.class);
-        intent.putExtra(EXTRA_USER, user.toJson());
+    PokemonDetail pokemonDetail;
+
+    public static void launch(Activity activity, PokemonDetail pokemonDetail, Transition transition) {
+        Intent intent = new Intent(activity, PokemonProfileActivity.class);
+        intent.putExtra(EXTRA_POKEMON, pokemonDetail.toJson());
         Transition.putTransition(intent, transition);
         activity.startActivity(intent);
         transition.overrideOpenTransition(activity);
@@ -50,13 +57,13 @@ public class UserProfileActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_pokemon_profile);
         ButterKnife.bind(this);
-        User user = Model.fromJson(getIntent().getStringExtra(EXTRA_USER), User.class);
+        PokemonDetail pokemonDetail = Model.fromJson(getIntent().getStringExtra(EXTRA_POKEMON), PokemonDetail.class);
 
         setupActionBar();
-        setupViewPager();
-        setupViews(user);
+        setupViewPager(pokemonDetail);
+        setupViews(pokemonDetail.snippet());
     }
 
     private void setupActionBar() {
@@ -65,16 +72,28 @@ public class UserProfileActivity extends BaseActivity {
         getSupportActionBar().setTitle("");
     }
 
-    private void setupViewPager() {
+    private final static Map<String, Class<? extends Fragment>> pages
+        = new ImmutableMap.Builder<String, Class<? extends Fragment>>()
+        .put("Introduction", PokemonDetailListFragment.class)
+        .put("Base Stats", BaseStatsFragment.class)
+        .put("Training", PokemonDetailListFragment.class)
+        .put("Breeding", PokemonDetailListFragment.class)
+        .put("TypeDefense", PokemonDetailListFragment.class)
+        .build();
+
+    private void setupViewPager(PokemonDetail pokemonDetail) {
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(UserRecipeListFragment.newInstance(), "Tab 1");
-        pagerAdapter.addFragment(UserRecipeListFragment.newInstance(), "Tab 2");
+        for (Map.Entry<String, Class<? extends Fragment>> entry : pages.entrySet()) {
+            Fragment fragment = Fragments.create(entry.getValue(), pokemonDetail);
+            if (null == fragment) continue;
+            pagerAdapter.addFragment(fragment, entry.getKey());
+        }
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void setupViews(User user) {
-        userProfileHeaderView.setUser(user);
+    private void setupViews(PokemonSnippet pokemonSnippet) {
+        pokemonProfileHeaderView.setPokemon(pokemonSnippet);
     }
 
     @Override
@@ -120,4 +139,5 @@ public class UserProfileActivity extends BaseActivity {
             return titles.get(position);
         }
     }
+
 }

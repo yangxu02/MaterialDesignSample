@@ -1,10 +1,8 @@
 package rejasupotaro.mds;
 
 import android.app.Application;
-
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
-
 import rejasupotaro.mds.di.components.ApplicationComponent;
 import rejasupotaro.mds.di.components.DaggerApplicationComponent;
 import rejasupotaro.mds.di.modules.ApplicationModule;

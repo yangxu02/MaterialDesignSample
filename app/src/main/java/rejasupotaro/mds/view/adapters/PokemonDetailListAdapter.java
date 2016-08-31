@@ -8,17 +8,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.squareup.picasso.Picasso;
 import java.util.List;
 import rejasupotaro.mds.R;
-import rejasupotaro.mds.data.models.Recipe;
+import rejasupotaro.mds.data.models.Model;
 
-public class UserRecipeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PokemonDetailListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Recipe> recipes;
+    private List<Model> models;
 
-    public UserRecipeListAdapter(List<Recipe> recipes) {
-        this.recipes = recipes;
+    public PokemonDetailListAdapter(List<Model> models) {
+        this.models = models;
     }
 
     @Override
@@ -28,12 +27,12 @@ public class UserRecipeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ItemViewHolder) holder).bind(recipes.get(position));
+        ((ItemViewHolder) holder).bind(models.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return recipes.size();
+        return models.size();
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -59,14 +58,14 @@ public class UserRecipeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(Recipe recipe) {
+        public void bind(Model model) {
             userImageView.setImageDrawable(userImageView.getResources().getDrawable(R.drawable.user));
-            userNameTextView.setText(recipe.user().name());
-            Picasso.with(recipeImageView.getContext())
-                    .load(recipe.imageUrl())
-                    .into(recipeImageView);
-            recipeTitleTextView.setText(recipe.title());
-            recipeDescriptionTextView.setText(recipe.description());
+//            userNameTextView.setText(recipe.user().name());
+//            Picasso.with(recipeImageView.getContext())
+//                    .load(recipe.imageUrl())
+//                    .into(recipeImageView);
+//            recipeTitleTextView.setText(recipe.title());
+//            recipeDescriptionTextView.setText(recipe.description());
         }
     }
 }

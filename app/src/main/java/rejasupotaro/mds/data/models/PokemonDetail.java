@@ -46,5 +46,12 @@ public abstract class PokemonDetail extends Model {
         return new AutoValue_PokemonDetail(snippet, stats, breeding, dex, training, defense, nameOrigin, evolution);
     }
 
+    public static PokemonDetail dummy(PokemonSnippet snippet) {
+        return new AutoValue_PokemonDetail(snippet, BaseStats.dummy(), Breeding.dummy(),
+            PokeDex.dummy(), Training.dummy(), TypeDefense.dummy(), NameOrigin.dummy(),
+            Evolution.dummy()
+        );
+    }
+
 
 }

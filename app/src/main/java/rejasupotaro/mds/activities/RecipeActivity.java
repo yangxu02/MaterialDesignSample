@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rejasupotaro.mds.R;

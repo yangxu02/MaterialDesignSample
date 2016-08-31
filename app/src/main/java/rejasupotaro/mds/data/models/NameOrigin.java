@@ -20,5 +20,8 @@ public abstract class NameOrigin extends Model {
         return new AutoValue_NameOrigin(source, explain);
     }
 
+    public static NameOrigin dummy() {
+        return new AutoValue_NameOrigin("source", "explain");
+    }
 
 }

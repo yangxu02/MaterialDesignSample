@@ -5,11 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import java.util.List;
 import rejasupotaro.mds.R;
 
 public class SuggestionListAdapter extends BindableAdapter<String> {

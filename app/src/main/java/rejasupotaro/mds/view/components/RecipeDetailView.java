@@ -10,12 +10,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.Recipe;
 
