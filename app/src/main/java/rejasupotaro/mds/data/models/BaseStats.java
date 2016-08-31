@@ -1,5 +1,6 @@
 package rejasupotaro.mds.data.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 
@@ -17,6 +18,14 @@ public abstract class BaseStats extends Model {
 
     @JsonProperty("max")
     public abstract StatsDetail max();
+
+    @JsonProperty
+    public static BaseStats create(@JsonProperty("normal") StatsDetail normal,
+                                   @JsonProperty("min") StatsDetail min,
+                                   @JsonProperty("max") StatsDetail max) {
+        return new AutoValue_BaseStats(normal, min, max);
+    }
+
 
     @AutoValue
     public static abstract class StatsDetail extends Model {
@@ -37,5 +46,17 @@ public abstract class BaseStats extends Model {
 
         @JsonProperty("speed")
         public abstract int speed();
+
+        @JsonCreator
+        public static StatsDetail create(@JsonProperty("hp") int hp,
+                                         @JsonProperty("attack") int attack,
+                                         @JsonProperty("defense") int defense,
+                                         @JsonProperty("spAttack") int spAttack,
+                                         @JsonProperty("spDefense") int spDefense,
+                                         @JsonProperty("speed") int speed) {
+            return new AutoValue_BaseStats_StatsDetail(hp, attack, defense, spAttack, spDefense, speed);
+        }
+
+
     }
 }

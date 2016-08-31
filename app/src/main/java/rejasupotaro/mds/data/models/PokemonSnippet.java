@@ -60,7 +60,7 @@ public abstract class PokemonSnippet extends Model {
                                         @JsonProperty("quick_moves") List<String> quickMoves,
                                         @JsonProperty("special_moves") List<String> specialMoves
     ) {
-        return new AutoValue_Pokemon(id, name, type, stamina, attack, defense,
+        return new AutoValue_PokemonSnippet(id, name, type, stamina, attack, defense,
             captureRate, fleeRate, candy, quickMoves, specialMoves);
     }
 

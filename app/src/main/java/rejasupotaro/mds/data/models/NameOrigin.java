@@ -13,4 +13,12 @@ public abstract class NameOrigin extends Model {
 
     @JsonProperty("explain")
     public abstract String explain();
+
+    @JsonProperty
+    public static NameOrigin create(@JsonProperty("source") String source,
+                                    @JsonProperty("explain") String explain) {
+        return new AutoValue_NameOrigin(source, explain);
+    }
+
+
 }

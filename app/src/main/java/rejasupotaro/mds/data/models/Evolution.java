@@ -1,5 +1,6 @@
 package rejasupotaro.mds.data.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 
@@ -13,4 +14,12 @@ public abstract class Evolution extends Model {
 
     @JsonProperty("downstreams")
     public abstract int[] downstreams();
+
+    @JsonCreator
+    public static Evolution create(@JsonProperty("upstreams") int[] upstreams,
+                                   @JsonProperty("downstreams") int[] downstreams) {
+        return new AutoValue_Evolution(upstreams, downstreams);
+    }
+
+
 }

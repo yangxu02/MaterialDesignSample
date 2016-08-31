@@ -1,7 +1,9 @@
 package rejasupotaro.mds.data.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
+import java.util.List;
 
 /**
  * Created by ulyx.yang@yeahmobi.com on 2016/8/31.
@@ -12,7 +14,7 @@ public abstract class PokeDex extends Model {
     public abstract int national();
 
     @JsonProperty("type")
-    public abstract PokemonType[] type();
+    public abstract List<PokemonType> type();
 
     @JsonProperty("species")
     public abstract String species();
@@ -24,11 +26,25 @@ public abstract class PokeDex extends Model {
     public abstract float weight(); // kg
 
     @JsonProperty("abilities")
-    public abstract PokemonAbility[] abilities();
+    public abstract List<PokemonAbility> abilities();
 
     @JsonProperty("locals")
     public abstract int[] locals();
 
     @JsonProperty("aliasInJapanese")
     public abstract String aliasInJapanese();
+
+    @JsonCreator
+    public static PokeDex create(@JsonProperty("national") int national,
+                                 @JsonProperty("type") List<PokemonType> type,
+                                 @JsonProperty("species") String species,
+                                 @JsonProperty("height") float height,
+                                 @JsonProperty("weight") float weight,
+                                 @JsonProperty("abilities") List<PokemonAbility> abilities,
+                                 @JsonProperty("locals") int[] locals,
+                                 @JsonProperty("aliasInJapanese") String aliasInJapanese) {
+        return new AutoValue_PokeDex(national, type, species, height, weight, abilities, locals, aliasInJapanese);
+    }
+
+
 }
