@@ -11,6 +11,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import java.util.Collections;
 import rejasupotaro.mds.R;
+import rejasupotaro.mds.data.models.PokemonDetail;
 import rejasupotaro.mds.view.adapters.PokemonDetailListAdapter;
 import rejasupotaro.mds.view.components.DividerItemDecoration;
 
@@ -21,7 +22,7 @@ public class PokemonDetailListFragment extends Fragment {
 
     private PokemonDetailListAdapter pokemonDetailListAdapter;
 
-    public static Fragment newInstance() {
+    public static Fragment newInstance(PokemonDetail pokemonDetail) {
         PokemonDetailListFragment fragment = new PokemonDetailListFragment();
         return fragment;
     }

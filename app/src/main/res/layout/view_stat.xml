@@ -6,7 +6,7 @@
     android:layout_marginStart="@dimen/spacing_large"
     android:layout_marginTop="@dimen/spacing_medium"
     android:background="@drawable/bg_step"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="@dimen/spacing_large">
 
   <com.makeramen.roundedimageview.RoundedImageView
@@ -14,7 +14,6 @@
       android:id="@+id/stat_icon"
       android:layout_width="16dp"
       android:layout_height="16dp"
-      android:layout_alignParentStart="true"
       android:scaleType="centerCrop"
       app:riv_oval="true"/>
 
@@ -23,7 +22,6 @@
       style="@android:style/Widget.ProgressBar.Horizontal"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:layout_alignParentTop="true"
-      android:layout_centerHorizontal="true"/>
+  />
 
 </LinearLayout>

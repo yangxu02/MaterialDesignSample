@@ -38,8 +38,6 @@ public class PokemonProfileActivity extends BaseActivity {
     @Bind(R.id.pager_tabs)
     TabLayout tabLayout;
 
-    PokemonDetail pokemonDetail;
-
     public static void launch(Activity activity, PokemonDetail pokemonDetail, Transition transition) {
         Intent intent = new Intent(activity, PokemonProfileActivity.class);
         intent.putExtra(EXTRA_POKEMON, pokemonDetail.toJson());

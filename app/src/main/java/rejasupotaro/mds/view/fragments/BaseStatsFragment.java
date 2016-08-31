@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class BaseStatsFragment extends Fragment {
 
     private final static String EXTRA_STATS = "extra_stats";
 
-    public static BaseStatsFragment newInstance(Context context, PokemonDetail pokemonDetail) {
+    public static BaseStatsFragment newInstance(PokemonDetail pokemonDetail) {
         BaseStatsFragment fragment = new BaseStatsFragment();
         Bundle stats = new Bundle();
         stats.putString(EXTRA_STATS, pokemonDetail.stats().toJson());
@@ -70,11 +71,12 @@ public class BaseStatsFragment extends Fragment {
     private void setupViews() {
         BaseStats.StatsDetail normal = baseStats.normal();
         Context context = getActivity();
-        this.hp = new StatView(context, BaseStat.create(normal.hp(), BaseStat.Icon.HP));
-        this.attack = new StatView(context, BaseStat.create(normal.attack(), BaseStat.Icon.ATTACK));
-        this.defense = new StatView(context, BaseStat.create(normal.defense(), BaseStat.Icon.DEFENSE));
-        this.sp_attack = new StatView(context, BaseStat.create(normal.spAttack(), BaseStat.Icon.SP_ATTACK));
-        this.sp_defense = new StatView(context, BaseStat.create(normal.spDefense(), BaseStat.Icon.SP_DEFENSE));
-        this.speed = new StatView(context, BaseStat.create(normal.speed(), BaseStat.Icon.SPEED));
+        Log.d("POKEMON", "stats=" + normal.toJson());
+        this.hp = new StatView(context).setup(BaseStat.create(normal.hp(), BaseStat.Icon.HP));
+        this.attack = new StatView(context).setup(BaseStat.create(normal.attack(), BaseStat.Icon.ATTACK));
+        this.defense = new StatView(context).setup(BaseStat.create(normal.defense(), BaseStat.Icon.DEFENSE));
+        this.sp_attack = new StatView(context).setup(BaseStat.create(normal.spAttack(), BaseStat.Icon.SP_ATTACK));
+        this.sp_defense = new StatView(context).setup(BaseStat.create(normal.spDefense(), BaseStat.Icon.SP_DEFENSE));
+        this.speed = new StatView(context).setup(BaseStat.create(normal.speed(), BaseStat.Icon.SPEED));
     }
 }

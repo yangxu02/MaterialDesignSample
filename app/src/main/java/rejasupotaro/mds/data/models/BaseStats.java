@@ -19,7 +19,7 @@ public abstract class BaseStats extends Model {
     @JsonProperty("max")
     public abstract StatsDetail max();
 
-    @JsonProperty
+    @JsonCreator
     public static BaseStats create(@JsonProperty("normal") StatsDetail normal,
                                    @JsonProperty("min") StatsDetail min,
                                    @JsonProperty("max") StatsDetail max) {
