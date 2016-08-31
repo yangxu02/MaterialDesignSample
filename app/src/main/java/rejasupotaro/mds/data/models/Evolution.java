@@ -22,7 +22,7 @@ public abstract class Evolution extends Model {
     }
 
     public static Evolution dummy() {
-        return new AutoValue_Evolution(null, null);
+        return new AutoValue_Evolution(new int[]{1}, new int[]{3});
     }
 
 

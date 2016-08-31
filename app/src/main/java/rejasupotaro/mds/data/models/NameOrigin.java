@@ -1,5 +1,6 @@
 package rejasupotaro.mds.data.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 
@@ -14,7 +15,7 @@ public abstract class NameOrigin extends Model {
     @JsonProperty("explain")
     public abstract String explain();
 
-    @JsonProperty
+    @JsonCreator
     public static NameOrigin create(@JsonProperty("source") String source,
                                     @JsonProperty("explain") String explain) {
         return new AutoValue_NameOrigin(source, explain);
