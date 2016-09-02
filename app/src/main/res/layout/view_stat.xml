@@ -9,19 +9,31 @@
     android:orientation="horizontal"
     android:padding="@dimen/spacing_large">
 
-  <com.makeramen.roundedimageview.RoundedImageView
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      android:id="@+id/stat_icon"
+  <FrameLayout
       android:layout_width="16dp"
-      android:layout_height="16dp"
-      android:scaleType="centerCrop"
-      app:riv_oval="true"/>
+      android:layout_height="16dp">
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/stat_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/blank"
+        app:riv_oval="true"/>
+
+    <TextView
+        android:id="@+id/stat_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    />
+  </FrameLayout>
 
   <ProgressBar
       android:id="@+id/stat_bar"
       style="@android:style/Widget.ProgressBar.Horizontal"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:background="@drawable/stats_bar_background"
   />
 
 </LinearLayout>

@@ -8,7 +8,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-      app:layout_behavior="rejasupotaro.mds.view.components.FlingBehavior">
+      app:layout_behavior="rejasupotaro.mds.view.components.FlingBehavior"
+  >
 
     <android.support.design.widget.CollapsingToolbarLayout
         android:layout_width="match_parent"
