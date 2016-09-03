@@ -9,6 +9,8 @@ import butterknife.ButterKnife;
 import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.BaseStat;
+import rejasupotaro.mds.data.models.BaseStats;
+import rejasupotaro.mds.data.models.PokemonDetail;
 
 public class StatListView extends FrameLayout {
     @Bind(R.id.stats_container)
@@ -34,9 +36,14 @@ public class StatListView extends FrameLayout {
         ButterKnife.bind(this);
     }
 
-    public void setSteps(List<BaseStat> stats) {
-        for (BaseStat stat : stats) {
-            statsContainer.addView(new StatView(getContext()).setup(stat));
-        }
+    public void setStats(PokemonDetail pokemonDetail) {
+        BaseStats.StatsDetail normal = pokemonDetail.stats().normal();
+        Context context = getContext();
+        statsContainer.addView(new StatView(context).setup(BaseStat.create(normal.hp(), BaseStat.Icon.HP)));
+        statsContainer.addView(new StatView(context).setup(BaseStat.create(normal.attack(), BaseStat.Icon.ATTACK)));
+        statsContainer.addView(new StatView(context).setup(BaseStat.create(normal.defense(), BaseStat.Icon.DEFENSE)));
+        statsContainer.addView(new StatView(context).setup(BaseStat.create(normal.spAttack(), BaseStat.Icon.SP_ATTACK)));
+        statsContainer.addView(new StatView(context).setup(BaseStat.create(normal.spDefense(), BaseStat.Icon.SP_DEFENSE)));
+        statsContainer.addView(new StatView(context).setup(BaseStat.create(normal.speed(), BaseStat.Icon.SPEED)));
     }
 }

@@ -44,77 +44,90 @@
   </android.support.design.widget.AppBarLayout>
 
   <android.support.v4.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="24dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="24dp">
 
       <android.support.v7.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_margin="@dimen/spacing_medium">
-
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/spacing_medium">
         <LinearLayout
-            style="@style/Widget.CardContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+          <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="BaseStats"
+                  android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+          <rejasupotaro.mds.view.components.StatListView
+                  android:id="@+id/base_stats"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+        </LinearLayout>
 
       </android.support.v7.widget.CardView>
 
       <android.support.v7.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/spacing_medium"
-          android:layout_marginLeft="@dimen/spacing_medium"
-          android:layout_marginRight="@dimen/spacing_medium">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="@dimen/spacing_medium"
+              android:layout_marginLeft="@dimen/spacing_medium"
+              android:layout_marginRight="@dimen/spacing_medium">
 
         <LinearLayout
-            style="@style/Widget.CardContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
           <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Friends"
-              android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Friends"
+                  android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+          <View style="@style/Divider" />
 
           <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/rejasupotaro" />
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/rejasupotaro" />
 
         </LinearLayout>
 
       </android.support.v7.widget.CardView>
 
       <android.support.v7.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/spacing_medium"
-          android:layout_marginLeft="@dimen/spacing_medium"
-          android:layout_marginRight="@dimen/spacing_medium">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="@dimen/spacing_medium"
+              android:layout_marginLeft="@dimen/spacing_medium"
+              android:layout_marginRight="@dimen/spacing_medium">
 
         <LinearLayout
-            style="@style/Widget.CardContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
           <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Related"
-              android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Related"
+                  android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
           <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/rejasupotaro" />
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/rejasupotaro" />
 
         </LinearLayout>
 
@@ -125,12 +138,12 @@
   </android.support.v4.widget.NestedScrollView>
 
   <android.support.design.widget.FloatingActionButton
-      android:layout_height="wrap_content"
-      android:layout_width="wrap_content"
-      app:layout_anchor="@id/appbar"
-      app:layout_anchorGravity="bottom|right|end"
-      android:src="@drawable/user"
-      android:layout_margin="@dimen/spacing_medium"
-      android:clickable="true"/>
+          android:layout_height="wrap_content"
+          android:layout_width="wrap_content"
+          app:layout_anchor="@id/appbar"
+          app:layout_anchorGravity="bottom|right|end"
+          android:src="@drawable/user"
+          android:layout_margin="@dimen/spacing_medium"
+          android:clickable="true"/>
 
 </android.support.design.widget.CoordinatorLayout>

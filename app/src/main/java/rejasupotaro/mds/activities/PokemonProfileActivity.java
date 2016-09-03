@@ -22,6 +22,7 @@ import rejasupotaro.mds.data.models.PokemonDetail;
 import rejasupotaro.mds.data.models.PokemonSnippet;
 import rejasupotaro.mds.view.Transition;
 import rejasupotaro.mds.view.components.PokemonProfileHeaderView;
+import rejasupotaro.mds.view.components.StatListView;
 import rejasupotaro.mds.view.fragments.BaseStatsFragment;
 import rejasupotaro.mds.view.fragments.Fragments;
 import rejasupotaro.mds.view.fragments.PokemonDetailListFragment;
@@ -31,12 +32,8 @@ public class PokemonProfileActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.pokemon_profile_header)
-    PokemonProfileHeaderView pokemonProfileHeaderView;
-    @Bind(R.id.view_pager)
-    ViewPager viewPager;
-    @Bind(R.id.pager_tabs)
-    TabLayout tabLayout;
+    @Bind(R.id.base_stats)
+    StatListView baseStatsView;
 
     public static void launch(Activity activity, PokemonDetail pokemonDetail, Transition transition) {
         Intent intent = new Intent(activity, PokemonProfileActivity.class);
@@ -55,13 +52,12 @@ public class PokemonProfileActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pokemon_profile);
+        setContentView(R.layout.view_pokemon_profile_allinone);
         ButterKnife.bind(this);
         PokemonDetail pokemonDetail = Model.fromJson(getIntent().getStringExtra(EXTRA_POKEMON), PokemonDetail.class);
 
         setupActionBar();
-        setupViewPager(pokemonDetail);
-        setupViews(pokemonDetail.snippet());
+        setupViews(pokemonDetail);
     }
 
     private void setupActionBar() {
@@ -70,28 +66,8 @@ public class PokemonProfileActivity extends BaseActivity {
         getSupportActionBar().setTitle("");
     }
 
-    private final static Map<String, Class<? extends Fragment>> pages
-        = new ImmutableMap.Builder<String, Class<? extends Fragment>>()
-        .put("Introduction", PokemonDetailListFragment.class)
-        .put("Base Stats", BaseStatsFragment.class)
-        .put("Training", PokemonDetailListFragment.class)
-        .put("Breeding", PokemonDetailListFragment.class)
-        .put("TypeDefense", PokemonDetailListFragment.class)
-        .build();
-
-    private void setupViewPager(PokemonDetail pokemonDetail) {
-        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        for (Map.Entry<String, Class<? extends Fragment>> entry : pages.entrySet()) {
-            Fragment fragment = Fragments.create(entry.getValue(), pokemonDetail);
-            if (null == fragment) continue;
-            pagerAdapter.addFragment(fragment, entry.getKey());
-        }
-        viewPager.setAdapter(pagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
-    }
-
-    private void setupViews(PokemonSnippet pokemonSnippet) {
-        pokemonProfileHeaderView.setPokemon(pokemonSnippet);
+    private void setupViews(PokemonDetail pokemonDetail) {
+        baseStatsView.setStats(pokemonDetail);
     }
 
     @Override
@@ -108,34 +84,5 @@ public class PokemonProfileActivity extends BaseActivity {
         }
     }
 
-    private static class ViewPagerAdapter extends FragmentPagerAdapter {
-
-        private final List<Fragment> fragments = new ArrayList<>();
-        private final List<String> titles = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            fragments.add(fragment);
-            titles.add(title);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titles.get(position);
-        }
-    }
 
 }

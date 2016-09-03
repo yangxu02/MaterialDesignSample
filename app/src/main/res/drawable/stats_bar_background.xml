@@ -4,11 +4,9 @@
     <shape>
       <corners android:radius="0dip"/>
       <gradient
-          android:angle="270"
-          android:centerColor="#ff5a5d5a"
-          android:centerY="0.5"
-          android:endColor="#ff747674"
-          android:startColor="#ff9d9e9d"/>
+          android:angle="0"
+          android:endColor="@color/cardview_light_background"
+          android:startColor="@color/cardview_light_background"/>
     </shape>
   </item>
   <item android:id="@android:id/progress">
