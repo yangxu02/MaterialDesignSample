@@ -4,8 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
-import javax.inject.Singleton;
 import rejasupotaro.mds.AndroidApplication;
+
+import javax.inject.Singleton;
 
 @Module
 public class ApplicationModule {

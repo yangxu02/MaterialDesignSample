@@ -3,15 +3,11 @@ package rejasupotaro.mds.view.components;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.google.common.base.CaseFormat;
-import com.google.common.base.CharMatcher;
-import com.squareup.picasso.Picasso;
-import org.apache.commons.lang3.StringUtils;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.BaseStat;
 
@@ -20,6 +16,8 @@ public class StatView extends FrameLayout {
     ProgressBar statBar;
     @Bind(R.id.stat_name)
     TextView statNameText;
+    @Bind(R.id.stat_value)
+    TextView statValue;
 
 
     public StatView(Context context) {
@@ -52,9 +50,10 @@ public class StatView extends FrameLayout {
 //            .load(stat.icon().icon()).into(statIcon);
         statBar.setProgress(stat.value());
         // TODO
-        statBar.setMax(100);
-        String name = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, stat.icon().name());
+        statBar.setMax(150);
+        String name = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, stat.icon().name());
         statNameText.setText(name);
+        statValue.setText("" + stat.value());
         return this;
     }
 }

@@ -12,14 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import java.util.ArrayList;
-import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.Model;
 import rejasupotaro.mds.data.models.User;
 import rejasupotaro.mds.view.Transition;
 import rejasupotaro.mds.view.components.UserProfileHeaderView;
 import rejasupotaro.mds.view.fragments.UserRecipeListFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserProfileActivity extends BaseActivity {
     private static final String EXTRA_USER = "user";

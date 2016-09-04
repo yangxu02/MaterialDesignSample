@@ -3,6 +3,7 @@ package rejasupotaro.mds.data.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
+
 import java.util.List;
 
 /**
@@ -11,6 +12,23 @@ import java.util.List;
 
 @AutoValue
 public abstract class PokemonSnippet extends Model {
+    @JsonCreator
+    public static PokemonSnippet create(@JsonProperty("id") int id,
+                                        @JsonProperty("name") String name,
+                                        @JsonProperty("type") List<String> type,
+                                        @JsonProperty("stamina") int stamina,
+                                        @JsonProperty("attack") int attack,
+                                        @JsonProperty("defense") int defense,
+                                        @JsonProperty("capture_rate") float captureRate,
+                                        @JsonProperty("flee_rate") float fleeRate,
+                                        @JsonProperty("candy") int candy,
+                                        @JsonProperty("quick_moves") List<String> quickMoves,
+                                        @JsonProperty("special_moves") List<String> specialMoves
+    ) {
+        return new AutoValue_PokemonSnippet(id, name, type, stamina, attack, defense,
+                captureRate, fleeRate, candy, quickMoves, specialMoves);
+    }
+
     /*
     ['#', 'Name', 'Type', 'Stamina', 'Attack', 'Defense', 'Capture Rate', 'Flee Rate', 'Candy', 'Quick Moves', 'Special Moves'] = [['151'], ['Mew'], ['Psychic'], ['200'], ['220'], ['220'], ['-'], ['10%'], ['-'], ['Pound'], ['Dragon Pulse', 'Earthquake', 'Fire Blast', 'Hurricane', 'Hyper Beam', 'Moonblast', 'Psychic', 'Solar Beam', 'Thunder']]
      */
@@ -46,22 +64,5 @@ public abstract class PokemonSnippet extends Model {
 
     @JsonProperty("special_moves")
     public abstract List<String> specialMoves();
-
-    @JsonCreator
-    public static PokemonSnippet create(@JsonProperty("id") int id,
-                                        @JsonProperty("name") String name,
-                                        @JsonProperty("type") List<String> type,
-                                        @JsonProperty("stamina") int stamina,
-                                        @JsonProperty("attack") int attack,
-                                        @JsonProperty("defense") int defense,
-                                        @JsonProperty("capture_rate") float captureRate,
-                                        @JsonProperty("flee_rate") float fleeRate,
-                                        @JsonProperty("candy") int candy,
-                                        @JsonProperty("quick_moves") List<String> quickMoves,
-                                        @JsonProperty("special_moves") List<String> specialMoves
-    ) {
-        return new AutoValue_PokemonSnippet(id, name, type, stamina, attack, defense,
-            captureRate, fleeRate, candy, quickMoves, specialMoves);
-    }
 
 }

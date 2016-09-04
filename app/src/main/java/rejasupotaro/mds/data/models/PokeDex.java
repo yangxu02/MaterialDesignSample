@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.Lists;
+
 import java.util.List;
 
 /**
@@ -11,6 +12,28 @@ import java.util.List;
  */
 @AutoValue
 public abstract class PokeDex extends Model {
+    @JsonCreator
+    public static PokeDex create(@JsonProperty("national") int national,
+                                 @JsonProperty("type") List<PokemonType> type,
+                                 @JsonProperty("species") String species,
+                                 @JsonProperty("height") float height,
+                                 @JsonProperty("weight") float weight,
+                                 @JsonProperty("abilities") List<PokemonAbility> abilities,
+                                 @JsonProperty("locals") int[] locals,
+                                 @JsonProperty("aliasInJapanese") String aliasInJapanese) {
+        return new AutoValue_PokeDex(national, type, species, height, weight, abilities, locals, aliasInJapanese);
+    }
+
+    public static PokeDex dummy() {
+        return new AutoValue_PokeDex(448,
+                Lists.newArrayList(PokemonType.fighting, PokemonType.steel),
+                "Aura Pokemon", 1.19f, 54.0f,
+                Lists.newArrayList(PokemonAbility.create("Inner Focus", "", 0),
+                        PokemonAbility.create("Steadfast", "", 0),
+                        PokemonAbility.create("Justified", "", 0)
+                ), new int[]{116, 116, 034, 063}, "Rukario");
+    }
+
     @JsonProperty("national")
     public abstract int national();
 
@@ -34,28 +57,6 @@ public abstract class PokeDex extends Model {
 
     @JsonProperty("aliasInJapanese")
     public abstract String aliasInJapanese();
-
-    @JsonCreator
-    public static PokeDex create(@JsonProperty("national") int national,
-                                 @JsonProperty("type") List<PokemonType> type,
-                                 @JsonProperty("species") String species,
-                                 @JsonProperty("height") float height,
-                                 @JsonProperty("weight") float weight,
-                                 @JsonProperty("abilities") List<PokemonAbility> abilities,
-                                 @JsonProperty("locals") int[] locals,
-                                 @JsonProperty("aliasInJapanese") String aliasInJapanese) {
-        return new AutoValue_PokeDex(national, type, species, height, weight, abilities, locals, aliasInJapanese);
-    }
-
-    public static PokeDex dummy() {
-        return new AutoValue_PokeDex(448,
-            Lists.newArrayList(PokemonType.fighting, PokemonType.steel),
-            "Aura Pokemon", 1.19f, 54.0f,
-            Lists.newArrayList(PokemonAbility.create("Inner Focus", "", 0),
-                PokemonAbility.create("Steadfast", "", 0),
-                PokemonAbility.create("Justified", "", 0)
-            ), new int[]{116, 116, 034, 063}, "Rukario");
-    }
 
 
 }

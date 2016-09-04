@@ -9,9 +9,10 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
-import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.Recipe;
+
+import java.util.List;
 
 public class UserRecipeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -49,14 +50,14 @@ public class UserRecipeListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @Bind(R.id.recipe_description_text)
         TextView recipeDescriptionTextView;
 
-        public static ItemViewHolder create(ViewGroup parent) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user_recipe, parent, false);
-            return new ItemViewHolder(itemView);
-        }
-
         public ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        public static ItemViewHolder create(ViewGroup parent) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user_recipe, parent, false);
+            return new ItemViewHolder(itemView);
         }
 
         public void bind(Recipe recipe) {

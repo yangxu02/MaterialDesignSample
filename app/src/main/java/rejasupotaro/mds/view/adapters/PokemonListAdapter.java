@@ -10,28 +10,17 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
-import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.activities.PokemonProfileActivity;
 import rejasupotaro.mds.data.models.MaterialSource;
-import rejasupotaro.mds.data.models.PokemonDetail;
 import rejasupotaro.mds.data.models.PokemonSnippet;
 import rejasupotaro.mds.view.Transition;
+
+import java.util.List;
 
 public class PokemonListAdapter extends BindableAdapter<PokemonSnippet> {
     public PokemonListAdapter(Context context, List<PokemonSnippet> pokemonSnippets) {
         super(context, pokemonSnippets);
-    }
-
-    static class ViewHolder {
-        @Bind(R.id.pokemon_image)
-        ImageView pokemonImageView;
-        @Bind(R.id.pokemon_name_text)
-        TextView pokemonNameTextView;
-
-        ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 
     @Override
@@ -54,7 +43,18 @@ public class PokemonListAdapter extends BindableAdapter<PokemonSnippet> {
 
         view.setOnClickListener(v -> {
             Activity activity = (Activity) v.getContext();
-            PokemonProfileActivity.launch(activity, PokemonDetail.dummy(pokemonSnippet), Transition.PUSH_RIGHT_TO_LEFT);
+            PokemonProfileActivity.launch(activity, pokemonSnippet, Transition.PUSH_RIGHT_TO_LEFT);
         });
+    }
+
+    static class ViewHolder {
+        @Bind(R.id.pokemon_image)
+        ImageView pokemonImageView;
+        @Bind(R.id.pokemon_name_text)
+        TextView pokemonNameTextView;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

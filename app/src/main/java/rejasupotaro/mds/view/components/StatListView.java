@@ -6,7 +6,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.BaseStat;
 import rejasupotaro.mds.data.models.BaseStats;

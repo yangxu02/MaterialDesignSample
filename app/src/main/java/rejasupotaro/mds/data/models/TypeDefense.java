@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 import com.google.common.collect.ImmutableMap;
+
 import java.util.Map;
 import java.util.Random;
 
@@ -12,9 +13,6 @@ import java.util.Random;
  */
 @AutoValue
 public abstract class TypeDefense extends Model {
-
-    @JsonProperty("effects")
-    public abstract Map<PokemonType, Float> effects();
 
     @JsonCreator
     public static TypeDefense create(@JsonProperty("effects") Map<PokemonType, Float> effects) {
@@ -31,6 +29,9 @@ public abstract class TypeDefense extends Model {
 
         return new AutoValue_TypeDefense(builder.build());
     }
+
+    @JsonProperty("effects")
+    public abstract Map<PokemonType, Float> effects();
 
 
 }

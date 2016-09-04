@@ -11,8 +11,6 @@ import android.widget.ListView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.view.adapters.SuggestionListAdapter;
 import rejasupotaro.mds.view.adapters.TextWatcherAdapter;
@@ -23,6 +21,9 @@ import rx.android.AndroidSubscriptions;
 import rx.android.internal.Assertions;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SearchView extends FrameLayout implements Observable.OnSubscribe<String> {
 

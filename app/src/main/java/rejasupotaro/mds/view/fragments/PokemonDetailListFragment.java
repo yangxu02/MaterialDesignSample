@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import java.util.Collections;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.PokemonDetail;
 import rejasupotaro.mds.view.adapters.PokemonDetailListAdapter;
 import rejasupotaro.mds.view.components.DividerItemDecoration;
+
+import java.util.Collections;
 
 public class PokemonDetailListFragment extends Fragment {
 

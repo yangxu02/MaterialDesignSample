@@ -3,41 +3,53 @@ package rejasupotaro.mds.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.google.common.collect.ImmutableMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.squareup.picasso.Picasso;
 import rejasupotaro.mds.R;
+import rejasupotaro.mds.data.models.MaterialSource;
 import rejasupotaro.mds.data.models.Model;
 import rejasupotaro.mds.data.models.PokemonDetail;
 import rejasupotaro.mds.data.models.PokemonSnippet;
+import rejasupotaro.mds.data.services.PokemonService;
 import rejasupotaro.mds.view.Transition;
-import rejasupotaro.mds.view.components.PokemonProfileHeaderView;
-import rejasupotaro.mds.view.components.StatListView;
-import rejasupotaro.mds.view.fragments.BaseStatsFragment;
-import rejasupotaro.mds.view.fragments.Fragments;
-import rejasupotaro.mds.view.fragments.PokemonDetailListFragment;
+import rejasupotaro.mds.view.components.*;
+import rx.Subscription;
+import rx.android.app.AppObservable;
+import rx.subscriptions.Subscriptions;
 
 public class PokemonProfileActivity extends BaseActivity {
     public static final String EXTRA_POKEMON = "pokemonSnippet";
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.pokemon_icon)
+    ImageView pokemonIcon;
     @Bind(R.id.base_stats)
     StatListView baseStatsView;
+    @Bind(R.id.training_view)
+    TrainingView trainingView;
+    @Bind(R.id.breeding_view)
+    BreedingView breedingView;
+    @Bind(R.id.evolution_view)
+    EvolutionPathView evolutionView;
+    @Bind(R.id.dex_view)
+    DexView dexView;
+    @Bind(R.id.defense_view)
+    DefenseView defenseView;
+    @Bind(R.id.defense_card)
+    CardView defenseCard;
 
-    public static void launch(Activity activity, PokemonDetail pokemonDetail, Transition transition) {
+    // TODO
+    private Subscription pokemonSubscription = Subscriptions.empty();
+
+    public static void launch(Activity activity, PokemonSnippet pokemonSnippet, Transition transition) {
         Intent intent = new Intent(activity, PokemonProfileActivity.class);
-        intent.putExtra(EXTRA_POKEMON, pokemonDetail.toJson());
+        intent.putExtra(EXTRA_POKEMON, pokemonSnippet.toJson());
         Transition.putTransition(intent, transition);
         activity.startActivity(intent);
         transition.overrideOpenTransition(activity);
@@ -50,14 +62,19 @@ public class PokemonProfileActivity extends BaseActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        pokemonSubscription.unsubscribe();
+        super.onDestroy();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_pokemon_profile_allinone);
         ButterKnife.bind(this);
-        PokemonDetail pokemonDetail = Model.fromJson(getIntent().getStringExtra(EXTRA_POKEMON), PokemonDetail.class);
-
         setupActionBar();
-        setupViews(pokemonDetail);
+        PokemonSnippet snippet = Model.fromJson(getIntent().getStringExtra(EXTRA_POKEMON), PokemonSnippet.class);
+        setupViews(snippet);
     }
 
     private void setupActionBar() {
@@ -66,8 +83,22 @@ public class PokemonProfileActivity extends BaseActivity {
         getSupportActionBar().setTitle("");
     }
 
+    private void setupViews(PokemonSnippet snippet) {
+        pokemonSubscription = AppObservable.bindActivity(this, new PokemonService(getApplicationComponent()).getDetail(snippet))
+                .subscribe(this::setupViews);
+    }
+
     private void setupViews(PokemonDetail pokemonDetail) {
+        Picasso.with(this).load(MaterialSource.PokemonWrapper.iconUrl(pokemonDetail.snippet()))
+//                .resize(256, 256)
+                .fit()
+                .into(pokemonIcon);
         baseStatsView.setStats(pokemonDetail);
+        breedingView.setBreedingAttr(pokemonDetail);
+        trainingView.setTrainingAttr(pokemonDetail);
+        evolutionView.setEvolutionPath(pokemonDetail);
+        dexView.setDexAttr(pokemonDetail);
+        defenseView.setDefenseGrid(pokemonDetail);
     }
 
     @Override

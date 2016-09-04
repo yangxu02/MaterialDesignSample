@@ -1,35 +1,30 @@
 package rejasupotaro.mds.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.etsy.android.grid.StaggeredGridView;
-import java.util.List;
 import rejasupotaro.mds.R;
-import rejasupotaro.mds.data.models.Channel;
-import rejasupotaro.mds.data.services.ChannelService;
+import rejasupotaro.mds.data.models.PokemonSnippet;
+import rejasupotaro.mds.data.services.PokemonService;
 import rejasupotaro.mds.data.services.SuggestionService;
 import rejasupotaro.mds.view.adapters.PokemonListAdapter;
-import rejasupotaro.mds.view.components.DrawerHeaderView;
 import rejasupotaro.mds.view.components.SearchView;
 import rx.Subscription;
 import rx.android.app.AppObservable;
 import rx.subscriptions.Subscriptions;
 
+import java.util.List;
+
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
-    @Bind(R.id.navigation_view)
-    NavigationView navigationView;
+    //    @Bind(R.id.drawer_layout)
+//    DrawerLayout drawerLayout;
+//    @Bind(R.id.navigation_view)
+//    NavigationView navigationView;
     @Bind(R.id.search_view)
     SearchView searchView;
     @Bind(R.id.toolbar)
@@ -38,7 +33,7 @@ public class MainActivity extends BaseActivity {
     StaggeredGridView pokemonListView;
 
     private PokemonListAdapter pokemonListAdapter;
-    private Subscription channelsSubscription = Subscriptions.empty();
+    private Subscription pokemonSubscription = Subscriptions.empty();
     private Subscription querySubscription = Subscriptions.empty();
     private Subscription suggestionsSubscription = Subscriptions.empty();
 
@@ -53,12 +48,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        channelsSubscription.unsubscribe();
+        pokemonSubscription.unsubscribe();
         querySubscription.unsubscribe();
         suggestionsSubscription.unsubscribe();
         super.onDestroy();
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -74,6 +70,7 @@ public class MainActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 
     private void setupActionBar() {
         setSupportActionBar(toolbar);
@@ -82,6 +79,7 @@ public class MainActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        /*
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -91,12 +89,13 @@ public class MainActivity extends BaseActivity {
         drawerLayout.setDrawerListener(drawerToggle);
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
+        */
     }
 
     private void setupViews() {
-        navigationView.addHeaderView(new DrawerHeaderView(this));
+//        navigationView.addHeaderView(new DrawerHeaderView(this));
 
-        channelsSubscription = AppObservable.bindActivity(this, new ChannelService().getList())
+        pokemonSubscription = AppObservable.bindActivity(this, new PokemonService(getApplicationComponent()).getSnippets())
                 .subscribe(this::setupViews);
         querySubscription = AppObservable.bindActivity(this, searchView.observe())
                 .subscribe(this::updateSuggestions);
@@ -104,18 +103,18 @@ public class MainActivity extends BaseActivity {
 
     private void updateSuggestions(String query) {
         suggestionsSubscription.unsubscribe();
-        suggestionsSubscription = AppObservable.bindActivity(this, new SuggestionService().get(query))
+        suggestionsSubscription = AppObservable.bindActivity(this, new SuggestionService(getApplicationComponent()).get(query))
                 .subscribe(searchView::updateSuggestions);
     }
 
-    private void setupViews(List<Channel> channels) {
+    private void setupViews(List<PokemonSnippet> pokemonSnippets) {
         LayoutInflater layoutInflater = getLayoutInflater();
 
         View header = layoutInflater.inflate(R.layout.list_header_channel_pokemon, null);
 
         pokemonListView.addHeaderView(header);
 
-        pokemonListAdapter = new PokemonListAdapter(this, channels.get(0).pokemons());
+        pokemonListAdapter = new PokemonListAdapter(this, pokemonSnippets);
         pokemonListView.setAdapter(pokemonListAdapter);
     }
 }

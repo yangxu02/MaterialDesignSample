@@ -1,18 +1,21 @@
 package rejasupotaro.mds.data.services;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
 import rejasupotaro.mds.data.models.Pokemons;
+import rejasupotaro.mds.di.components.ApplicationComponent;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
-public class SuggestionService {
+import java.util.List;
+
+public class SuggestionService extends BaseService {
+
+    public SuggestionService(ApplicationComponent applicationComponent) {
+        super(applicationComponent);
+    }
 
     public Observable<List<String>> get(String query) {
-        if (TextUtils.isEmpty(query)) {
-            return Observable.just(new ArrayList<>());
-        }
 
-        return Observable.just(Pokemons.allPokemonNames(query));
+        return makeObservable(Pokemons.allPokemonNames(applicationComponent.context(), query)).subscribeOn(Schedulers.computation());
+
     }
 }

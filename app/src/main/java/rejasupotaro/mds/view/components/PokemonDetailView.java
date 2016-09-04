@@ -14,10 +14,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import java.util.Collections;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.MaterialSource;
 import rejasupotaro.mds.data.models.PokemonSnippet;
+
+import java.util.Collections;
 
 public class PokemonDetailView extends FrameLayout {
 

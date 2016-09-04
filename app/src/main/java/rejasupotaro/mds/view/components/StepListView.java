@@ -6,9 +6,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import java.util.List;
 import rejasupotaro.mds.R;
 import rejasupotaro.mds.data.models.Step;
+
+import java.util.List;
 
 public class StepListView extends FrameLayout {
     @Bind(R.id.steps_container)

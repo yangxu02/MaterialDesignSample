@@ -3,6 +3,7 @@ package rejasupotaro.mds.data.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,6 @@ public abstract class Step extends Model {
     public static final Step dummy2 = new AutoValue_Step(
             "Let everyone add filling and toppings to their soft shells, fold in half and dig in!",
             "https://img-global.cpcdn.com/001_steps/2432172_8aed8f44ef810f22/320x320sq70/photo.jpg");
-
-    @JsonProperty("description")
-    public abstract String description();
-
-    @JsonProperty("image_url")
-    public abstract String imageUrl();
 
     @JsonCreator
     public static Step create(@JsonProperty("description") String description,
@@ -52,5 +47,11 @@ public abstract class Step extends Model {
             add(Step.dummy());
         }};
     }
+
+    @JsonProperty("description")
+    public abstract String description();
+
+    @JsonProperty("image_url")
+    public abstract String imageUrl();
 
 }

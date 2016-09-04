@@ -3,6 +3,7 @@ package rejasupotaro.mds.data.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,24 +31,6 @@ public abstract class Recipe extends Model {
             Step.dummies(),
             "Updated at 07/06/2015",
             User.dummy());
-
-    @JsonProperty("title")
-    public abstract String title();
-
-    @JsonProperty("description")
-    public abstract String description();
-
-    @JsonProperty("image_url")
-    public abstract String imageUrl();
-
-    @JsonProperty("steps")
-    public abstract List<Step> steps();
-
-    @JsonProperty("updated_at")
-    public abstract String updatedAt();
-
-    @JsonProperty("user")
-    public abstract User user();
 
     @JsonCreator
     public static Recipe create(@JsonProperty("title") String title,
@@ -85,4 +68,22 @@ public abstract class Recipe extends Model {
             add(Recipe.dummy());
         }};
     }
+
+    @JsonProperty("title")
+    public abstract String title();
+
+    @JsonProperty("description")
+    public abstract String description();
+
+    @JsonProperty("image_url")
+    public abstract String imageUrl();
+
+    @JsonProperty("steps")
+    public abstract List<Step> steps();
+
+    @JsonProperty("updated_at")
+    public abstract String updatedAt();
+
+    @JsonProperty("user")
+    public abstract User user();
 }

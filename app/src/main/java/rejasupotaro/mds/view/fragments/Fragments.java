@@ -2,9 +2,10 @@ package rejasupotaro.mds.view.fragments;
 
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import rejasupotaro.mds.data.models.PokemonDetail;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import rejasupotaro.mds.data.models.PokemonDetail;
 
 public class Fragments {
     public static Fragment create(Class<? extends Fragment> clazz, PokemonDetail pokemonDetail) {

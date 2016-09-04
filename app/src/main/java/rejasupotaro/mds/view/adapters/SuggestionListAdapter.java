@@ -7,19 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import java.util.List;
 import rejasupotaro.mds.R;
 
+import java.util.List;
+
 public class SuggestionListAdapter extends BindableAdapter<String> {
-
-    static class ViewHolder {
-        @Bind(R.id.suggestion_text)
-        TextView suggestionText;
-
-        ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
-    }
 
     public SuggestionListAdapter(Context context) {
         super(context);
@@ -43,5 +35,22 @@ public class SuggestionListAdapter extends BindableAdapter<String> {
     public void bindView(String item, int position, View view) {
         ViewHolder holder = (ViewHolder) view.getTag();
         holder.suggestionText.setText(item);
+
+        // TODO
+//         view.setOnClickListener(v -> {
+//            Activity activity = (Activity) v.getContext();
+//            PokemonProfileActivity.launch(activity, PokemonDetail.dummy(pokemonSnippet), Transition.PUSH_RIGHT_TO_LEFT);
+//        });
     }
+
+    static class ViewHolder {
+        @Bind(R.id.suggestion_text)
+        TextView suggestionText;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+
+
 }

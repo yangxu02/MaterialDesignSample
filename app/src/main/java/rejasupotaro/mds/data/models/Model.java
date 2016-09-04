@@ -1,8 +1,9 @@
 package rejasupotaro.mds.data.models;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import java.io.IOException;
 import rejasupotaro.mds.data.SerializerProvider;
+
+import java.io.IOException;
 
 public class Model {
     public static <T> T fromJson(String json, Class<T> clazz) {

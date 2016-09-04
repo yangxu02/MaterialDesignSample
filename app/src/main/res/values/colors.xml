@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="yellow">#ffdf00</color>
+    <color name="white">@android:color/white</color>
     <color name="blue">#303F9F</color>
     <color name="green">#4CAF50</color>
     <color name="green_teal">#009688</color>
@@ -13,6 +15,11 @@
     <color name="black">#484432</color>
     <color name="dark_gray">#7b7769</color>
     <color name="gray">#a3a090</color>
+    <color name="rock">#cea441</color>
+    <color name="dragon">#e32126</color>
+    <color name="dark">#484432</color>
+    <color name="fairy">#ffaaff</color>
+    <color name="steel">#cccccc</color>
     <color name="border">#dbdbce</color>
     <color name="transparent">#00000000</color>
     <color name="semi_transparent">#33000000</color>

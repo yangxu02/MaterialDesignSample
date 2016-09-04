@@ -1,15 +1,19 @@
 package rejasupotaro.mds.data.models;
 
+import android.content.Context;
 import android.util.Log;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.StringEscapeUtils;
+import rejasupotaro.mds.utils.AssetsUtil;
+
 import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.apache.commons.lang3.StringEscapeUtils;
+import java.util.concurrent.Callable;
 
 /**
  * Created by ulyx.yang@yeahmobi.com on 2016/8/29.
@@ -19,12 +23,13 @@ public class Pokemons {
 
     private static SoftReference<List<PokemonSnippet>> pokemonRefs = null;
 
-    public synchronized static void load() {
+    public synchronized static void load(Context appContext) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         JavaType type = objectMapper.getTypeFactory().constructCollectionType(List.class, PokemonSnippet.class);
         try {
-            String dbText = StringEscapeUtils.unescapeJava(db);
+            String dbText = AssetsUtil.getContent(appContext, "snippets");
+            dbText = StringEscapeUtils.unescapeJava(dbText);
             List<PokemonSnippet> pokemonSnippetList = objectMapper.readValue(dbText, type);
             if (null == pokemonRefs) {
                 pokemonRefs = new SoftReference<List<PokemonSnippet>>(pokemonSnippetList);
@@ -34,33 +39,54 @@ public class Pokemons {
         }
     }
 
-    public synchronized static List<PokemonSnippet> allPokemons() {
-        if (null == pokemonRefs || null == pokemonRefs.get()) {
-            load();
-        }
-        if (null == pokemonRefs || null == pokemonRefs.get()) {
-            return Collections.emptyList();
-        }
-        return pokemonRefs.get();
-    }
+    public synchronized static Callable<List<PokemonSnippet>> allPokemons(Context appContext) {
 
-
-    public synchronized static List<String> allPokemonNames(String query) {
-        if (null == pokemonRefs || null == pokemonRefs.get()) {
-            load();
-        }
-        if (null == pokemonRefs || null == pokemonRefs.get()) {
-            return Collections.emptyList();
-        }
-        List<PokemonSnippet> pokemonSnippetList = pokemonRefs.get();
-        List<String> nameList = new ArrayList<>(pokemonSnippetList.size());
-        for (PokemonSnippet pokemonSnippet : pokemonSnippetList) {
-            if (pokemonSnippet.name().contains(query)) {
-                nameList.add(pokemonSnippet.name());
+        return () -> {
+            if (null == pokemonRefs || null == pokemonRefs.get()) {
+                load(appContext);
             }
-        }
-        return nameList;
+            if (null == pokemonRefs || null == pokemonRefs.get()) {
+                return Collections.EMPTY_LIST;
+            }
+            return pokemonRefs.get();
+        };
     }
+
+
+    public synchronized static Callable<List<String>> allPokemonNames(Context appContext, String query) {
+        return () -> {
+            if (null == pokemonRefs || null == pokemonRefs.get()) {
+                load(appContext);
+            }
+            if (null == pokemonRefs || null == pokemonRefs.get()) {
+                return Collections.emptyList();
+            }
+            List<PokemonSnippet> pokemonSnippetList = pokemonRefs.get();
+            List<String> nameList = new ArrayList<>(pokemonSnippetList.size());
+            for (PokemonSnippet pokemonSnippet : pokemonSnippetList) {
+                if (pokemonSnippet.name().contains(query)) {
+                    nameList.add(pokemonSnippet.name());
+                }
+            }
+            return nameList;
+        };
+    }
+
+    public synchronized static Callable<PokemonDetail> pokemonDetail(Context appContext, String name) {
+
+        // TODO
+        return () -> {
+            return null;
+        };
+    }
+
+    public synchronized static Callable<PokemonDetail> pokemonDetail(Context appContext, PokemonSnippet snippet) {
+
+        // TODO
+        return () -> PokemonDetail.dummy(snippet);
+    }
+
+
 
 
 }
