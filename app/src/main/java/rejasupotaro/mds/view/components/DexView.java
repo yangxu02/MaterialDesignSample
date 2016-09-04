@@ -1,7 +1,6 @@
 package rejasupotaro.mds.view.components;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,15 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.google.common.base.CaseFormat;
 import com.google.common.base.Function;
 import com.google.common.base.Strings;
 import com.google.common.primitives.Ints;
 import com.squareup.picasso.Picasso;
 import rejasupotaro.mds.R;
-import rejasupotaro.mds.data.models.MaterialSource;
-import rejasupotaro.mds.data.models.PokeDex;
-import rejasupotaro.mds.data.models.PokemonAbility;
-import rejasupotaro.mds.data.models.PokemonDetail;
+import rejasupotaro.mds.data.models.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -27,7 +24,7 @@ public class DexView extends FrameLayout {
     @Bind(R.id.dex_base_container)
     LinearLayout dexBaseContainer;
     @Bind(R.id.dex_additional_container)
-    LinearLayout dexAddtionalContainer;
+    LinearLayout dexAdditionalContainer;
     @Bind(R.id.pokemon_image)
     ImageView pokemonImageView;
     @Bind(R.id.pokemon_name_text)
@@ -89,12 +86,20 @@ public class DexView extends FrameLayout {
         Context context = getContext();
         Picasso.with(context).load(MaterialSource.PokemonWrapper.imageUrl(pokemonDetail.snippet())).into(pokemonImageView);
         pokemonNameText.setText(pokemonDetail.snippet().name());
+        dexBaseContainer.addView(new AttrView(context).setup("Japanese", "" + dex.aliasInJapanese()));
         dexBaseContainer.addView(new AttrView(context).setup("National", "" + dex.national()));
-        dexBaseContainer.addView(new AttrView(context).setup("Height", "" + dex.height() + "m"));
-        dexBaseContainer.addView(new AttrView(context).setup("Weight", "" + dex.weight() + "kg"));
-        String type = TextUtils.join(", ", dex.type());
-        dexAddtionalContainer.addView(new AttrView(context).setup("Type", type));
-        dexAddtionalContainer.addView(new AttrView(context).setup("Species", dex.species()));
+        dexBaseContainer.addView(new AttrView(context).setup("Height", "" + dex.height() + " m"));
+        dexBaseContainer.addView(new AttrView(context).setup("Weight", "" + dex.weight() + " kg"));
+        String type = objectsToStr(dex.type(), new Function<PokemonType, String>() {
+            @Nullable
+            @Override
+            public String apply(@Nullable PokemonType input) {
+                return null == input ? "" : CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, input.name());
+            }
+        });
+
+        dexAdditionalContainer.addView(new AttrView(context).setup("Type", type));
+        dexAdditionalContainer.addView(new AttrView(context).setup("Species", dex.species()));
         String abilities = objectsToStr(dex.abilities(), new Function<PokemonAbility, String>() {
             @Nullable
             @Override
@@ -102,9 +107,8 @@ public class DexView extends FrameLayout {
                 return null == input ? "" : input.name();
             }
         });
-        dexAddtionalContainer.addView(new AttrView(context).setup("Abilities", "" + abilities));
+        dexAdditionalContainer.addView(new AttrView(context).setup("Abilities", "" + abilities));
         String locals = intsToStr(dex.locals());
-        dexAddtionalContainer.addView(new AttrView(context).setup("Locals", "" + locals));
-        dexAddtionalContainer.addView(new AttrView(context).setup("Japanese", "" + dex.aliasInJapanese()));
+        dexAdditionalContainer.addView(new AttrView(context).setup("Locals", "" + locals));
     }
 }

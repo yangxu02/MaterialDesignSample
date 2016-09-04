@@ -49,7 +49,7 @@ public class BreedingView extends FrameLayout {
         Context context = getContext();
         String eggGroups = TextUtils.join(", ", breeding.eggGroups());
         breedingContainer.addView(new AttrView(context).setup("EggGroups", eggGroups));
-        String gender = "male " + toPercent(breeding.chanceMale()) + ", female " + toPercent(breeding.chanceFemale());
+        String gender = "Male " + toPercent(breeding.chanceMale()) + ", Female " + toPercent(breeding.chanceFemale());
         breedingContainer.addView(new AttrView(context).setup("Gender", gender));
         String eggCycles = breeding.eggCycles() + "(" + breeding.eggCyclesComment() + ")";
         breedingContainer.addView(new AttrView(context).setup("EggCycles", eggCycles));
