@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_large"
         android:orientation="vertical"
-        android:layout_gravity="end"
+        android:layout_gravity="center_vertical|end"
         >
 
       <ImageView
@@ -44,14 +44,15 @@
 
   </LinearLayout>
 
-  <ImageView
+  <View
       android:id="@+id/dash_line"
       android:layout_width="match_parent"
-      android:layout_height="3dp"
+      android:layout_height="wrap_content"
       android:src="@drawable/shape_horizontal_dashed_line"
       android:layout_marginTop="@dimen/spacing_xsmall"
       android:layout_marginBottom="@dimen/spacing_xsmall"
       android:layerType="software"
+      android:orientation="horizontal"
       />
 
   <LinearLayout

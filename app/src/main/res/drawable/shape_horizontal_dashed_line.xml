@@ -11,6 +11,7 @@
           android:color="@color/blue"
           android:dashGap="4dp"
           android:dashWidth="4dp"/>
+      <size android:height="3dp"/>
     </shape>
   </item>
 </layer-list>
